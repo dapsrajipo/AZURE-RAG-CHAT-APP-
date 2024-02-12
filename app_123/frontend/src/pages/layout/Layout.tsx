@@ -14,18 +14,18 @@ const Layout = () => {
             <header className={styles.header} role={"banner"}>
                 <div className={styles.headerContainer}>
                     <Link to="/" className={styles.headerTitleContainer}>
-                        <h3 className={styles.headerTitle}>AI + Research Analystics | PATIENT EDUCATION </h3>
+                        <h3 className={styles.headerTitle}>GPT + Enterprise data | Sample</h3>
                     </Link>
                     <nav>
                         <ul className={styles.headerNavList}>
                             <li>
                                 <NavLink to="/" className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}>
-                                    ReseachAnalytics
+                                    Chat
                                 </NavLink>
                             </li>
                             <li className={styles.headerNavLeftMargin}>
                                 <NavLink to="/qa" className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}>
-                                    Upload Your Paper
+                                    Ask a question
                                 </NavLink>
                             </li>
                             <li className={styles.headerNavLeftMargin}>
@@ -42,7 +42,7 @@ const Layout = () => {
                             </li>
                         </ul>
                     </nav>
-                    <h4 className={styles.headerRightText}> RAJIPO Group </h4>
+                    <h4 className={styles.headerRightText}>Azure OpenAI + AI Search</h4>
                     {useLogin && <LoginButton />}
                 </div>
             </header>

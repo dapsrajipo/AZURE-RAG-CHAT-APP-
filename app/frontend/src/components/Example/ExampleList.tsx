@@ -3,15 +3,16 @@ import { Example } from "./Example";
 import styles from "./Example.module.css";
 
 const DEFAULT_EXAMPLES: string[] = [
-    "What is included in my Northwind Health Plus plan that is not in standard?",
-    "What happens in a performance review?",
-    "What does a Product Manager do?"
+    " How can LLMs improve the accuracy of medical diagnoses from patient interviews?",
+    "What role do LLMs play in enhancing personalized patient care and treatment plans?",
+    "How can LLMs support mental health professionals in providing care?",
+    "In what ways can LLMs contribute to medical education and continuous professional development?"
 ];
 
 const GPT4V_EXAMPLES: string[] = [
-    "Compare the impact of interest rates and GDP in financial markets.",
-    "What is the expected trend for the S&P 500 index over the next five years? Compare it to the past S&P 500 performance",
-    "Can you identify any correlation between oil prices and stock market trends?"
+    "Can LLMs enhance collaborative healthcare by integrating insights from various healthcare professionals?",
+    "What are the limitations and challenges of implementing LLMs in real-world healthcare settings?",
+    "What are the ethical considerations in using LLMs for patient data analysis and privacy?"
 ];
 
 interface Props {

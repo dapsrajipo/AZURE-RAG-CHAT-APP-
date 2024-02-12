@@ -16,26 +16,31 @@ AZURE_STORAGE_CONTAINER = os.getenv("AZURE_STORAGE_CONTAINER")
 
 class RetrieveThenReadApproach(Approach):
     """
-    "Assist in identifying the most effective LLM-based tools for improving patient care management in remote areas."
+    Simple retrieve-then-read implementation, using the AI Search and OpenAI APIs directly. It first retrieves
+    top documents from search, then constructs a prompt with them, and then uses OpenAI to generate an completion
+    (answer) with that prompt.
     """
 
-    system_chat_template = (    
-    "You are an intelligent assistant designed to support healthcare professionals by leveraging LLM applications in healthcare. Your goal is to retrieve top documents from search, construct a prompt with these documents, and use OpenAI to generate a completion (answer) with that prompt. Focus on the use of LLMs in enhancing patient care management, especially in remote or underserved regions. Consider the integration of AI with existing healthcare systems, the role of LLMs in diagnosing and treating patients remotely, and how these technologies can support healthcare workers in these areas."
-    + "Answer the following questions using only the data provided in the sources below. For tabular information, return it as an HTML table. Do not return markdown format. Each source has a name followed by a colon and the actual information. Always include the source name for each fact you use in the response. If you cannot answer using the sources below, say you don't know." 
-    
+    system_chat_template = (
+        "You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. "
+        + "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. "
+        + "Answer the following question using only the data provided in the sources below. "
+        + "For tabular information return it as an html table. Do not return markdown format. "
+        + "Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. "
+        + "If you cannot answer using the sources below, say you don't know. Use below example to answer"
     )
 
     # shots/sample conversation
     question = """
-'How can LLM-based tools improve patient care management in remote areas according to the provided sources?'
+'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
 
 Sources:
- ResearchPaper1.pdf: Highlights the success of LLMs in diagnosing diseases from patient symptoms described in natural language.
- CaseStudy2.pdf: Describes a remote area where LLM-based chatbots have been used to provide preliminary health assessments.
- ImplementationGuide3.pdf: Discusses the integration of LLM tools with electronic health records (EHRs) to enhance data accessibility and patient care.
- ReviewArticle4.pdf: Reviews various LLM applications in healthcare, focusing on patient engagement and care continuity.
+info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
+info2.pdf: Overlake is in-network for the employee plan.
+info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
+info4.pdf: In-network institutions include Overlake, Swedish and others in the region
 """
-    answer = "LLM-based tools can significantly enhance patient care management in remote areas by providing accurate disease diagnosis from natural language descriptions [ResearchPaper1.pdf], offering preliminary health assessments through chatbots [CaseStudy2.pdf], integrating with EHRs for better data accessibility [ImplementationGuide3.pdf], and improving patient engagement and care continuity [ReviewArticle4.pdf]."
+    answer = "In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf]."
 
     def __init__(
         self,
